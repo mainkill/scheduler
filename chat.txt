@@ -1,0 +1,71 @@
+CHAT LOG
+Date Started: 2026-03-20
+Format: Plain text with speaker labels
+
+USER:
+지금부터 Create React App을 사용하여Scheduler 웹 앱을 만드는 프로젝트를 시작하려고 해. 일단 chat.txt file을 만들고 대화 내용을 모두 저장해 줘.
+
+ASSISTANT:
+워크스페이스와 메모리 상태를 확인한 뒤 실행 계획을 수립하고, 저장 범위 및 형식을 확인함.
+
+ASSISTANT QUESTION:
+chat.txt에 현재까지의 대화만 저장할지, 이후 대화도 누적 저장할지 및 저장 형식 확인.
+
+USER ANSWER:
+이후 대화도 계속 누적 저장 / 단순 텍스트(화자 구분만)
+
+ASSISTANT:
+세션 계획 문서 작성 및 저장(계획 중심).
+
+USER:
+일단, MVP_template.txt file을 만들고 Miminum Viable Product에 맞는 PRD 내용을 알려줘.
+
+ASSISTANT:
+MVP PRD 작성 계획으로 갱신하고, Scheduler MVP PRD 초안 제시(텍스트 템플릿 제공).
+
+USER:
+Start implementation
+
+ASSISTANT:
+구현 시작. CRA 초기화 시도는 사용자 스킵으로 실행되지 않음. MVP_template.txt 및 chat.txt 생성 진행.
+
+ASSISTANT:
+검증 완료. 루트에 chat.txt와 MVP_template.txt가 생성되었고, PRD 템플릿 본문이 정상 저장됨.
+
+USER:
+MVP_template.txt file 내용을 한국어로 바꿔줘.
+
+ASSISTANT:
+MVP_template.txt 전체 내용을 동일한 구조로 한국어 번역하여 반영함.
+
+USER:
+이제 CRA로 구현을 시작해 줘.
+
+ASSISTANT:
+CRA 초기화 완료. 핵심 기능 구현 및 빌드 성공.
+- 폴더: schedulerweb/
+- 파일: src/(App.js, index.js, index.css), public/(index.html), package.json
+- MVP 기능: CRUD, 일/주/월 보기, 우선순위, 완료 토글, 검색, 필터, 로컬 저장
+- 빌드: npm run build 성공, build/index.html 생성됨
+- 실행 가능: npm start로 개발 서버 시작 가능
+
+USER:
+이런 오류가 발생하는데, 해결해 줄 수 있어?
+npm : 이 시스템에서 스크립트를 실행할 수 없으므로...PSSecurityException
+
+ASSISTANT:
+PowerShell 실행 정책 오류 해결 완료.
+- 해결책: cmd /c "cd schedulerweb && npm start" 사용
+- 대체책: npm.cmd start 또는 Set-ExecutionPolicy 변경
+- 상태: 개발 서버 http://localhost:3000에서 실행 중
+
+USER:
+앱의 기능은 그대로 두고, Tailwind CSS를 이용하여 design을 좀 더 멋지게 만들어 줘.
+
+ASSISTANT:
+기능 로직은 유지하고 UI를 Tailwind CSS 기반으로 전환 완료.
+- Tailwind 설정 추가: schedulerweb/tailwind.config.js, schedulerweb/postcss.config.js
+- 의존성 추가: tailwindcss, postcss, autoprefixer
+- 스타일 전환: schedulerweb/src/index.css (Tailwind directives)
+- 컴포넌트 전환: schedulerweb/src/App.js (Tailwind utility classes)
+- 검증: npm install 완료, build/index.html 생성 확인(BUILD_OK)
