@@ -69,3 +69,15 @@ ASSISTANT:
 - 스타일 전환: schedulerweb/src/index.css (Tailwind directives)
 - 컴포넌트 전환: schedulerweb/src/App.js (Tailwind utility classes)
 - 검증: npm install 완료, build/index.html 생성 확인(BUILD_OK)
+
+USER:
+내 github 주소는 https://github.com/mainkill/scheduler.git 이거야. 여기에 upload하기 위한 작업을 진행해 줘.
+
+ASSISTANT:
+Git 초기화 및 GitHub 업로드 수행.
+- 저장소 초기화: git init
+- .gitignore 생성
+- 초기 커밋 생성: Initial commit: Scheduler MVP with Tailwind UI
+- 원격 연결: origin -> https://github.com/mainkill/scheduler.git
+- 브랜치: main
+- 상태: main이 origin/main 추적 중, 업로드 완료
