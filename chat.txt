@@ -175,3 +175,24 @@ USER:
 
 A:
 Git 상태 점검 후 변경사항 커밋/푸시 진행 중.
+
+A:
+GitHub 업로드 완료.
+- 커밋: a0e9cd0 (feat: add Prisma SQLite backend and auth flows)
+- 브랜치: main -> origin/main push 성공
+
+USER:
+Vercel로 redeploy후 login 시도시 다음과 같은 오류가 있어. 서버에 연결할 수 없습니다. 해결 방법이 있어?
+
+A:
+원인 분석 및 수정 반영.
+- 원인1: Vercel 설정에서 모든 경로를 index.html로 rewrite하여 /api 요청도 프론트로 라우팅됨
+- 원인2: Vercel에 백엔드 서버가 없거나 REACT_APP_API_URL 미설정 상태에서 /api/auth/login 호출 실패
+- 코드 수정:
+  - schedulerweb/vercel.json: /api 제외한 경로만 SPA rewrite 하도록 변경
+  - schedulerweb/src/App.js: 비JSON 응답에서도 안전하게 에러 처리 및 안내 메시지 개선
+- 배포 체크리스트:
+  1) 백엔드(server)를 Render/Railway 등에서 먼저 배포
+  2) Vercel 환경변수 REACT_APP_API_URL=<백엔드 URL> 설정
+  3) 백엔드 환경변수 CLIENT_URL=https://scheduler-chi-sable.vercel.app 설정
+  4) 프론트/백엔드 모두 재배포

@@ -81,9 +81,10 @@ function AuthPage({ onAuth }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      const data = await res.json();
+      const contentType = res.headers.get('content-type') || '';
+      const data = contentType.includes('application/json') ? await res.json() : {};
       if (!res.ok) {
-        setError(data.error || '오류가 발생했습니다.');
+        setError(data.error || '서버 API를 찾을 수 없습니다. REACT_APP_API_URL 설정을 확인해 주세요.');
         return;
       }
       localStorage.setItem('scheduler-token', data.token);
