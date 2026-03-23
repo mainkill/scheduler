@@ -222,3 +222,26 @@ A:
   2) Start Command: npm run start:render
   3) Persistent Disk mount path: /var/data
   4) DATABASE_URL=file:/var/data/dev.db
+
+USER:
+persistend disk 사용은 free version에서는 불가능 한 것 같아. 다른 방법은 없어?
+
+A:
+대안 가능.
+- 가장 권장: SQLite 대신 무료 외부 Postgres(Neon/Supabase) 사용 + Prisma provider를 postgresql로 전환
+- 장점: 디스크 마운트 불필요, Render free에서도 동작
+- 임시 대안(비권장): Render 로컬 파일시스템(file:./dev.db) 사용
+  - 단점: 재배포/재시작 시 데이터 유실 가능
+- 서버리스 대안: Vercel + Serverless DB(Neon/Supabase) 조합으로 API와 프론트 모두 배포
+
+USER:
+그렇게 해 줘.
+
+A:
+PostgreSQL 전환 작업 반영 완료.
+- server/prisma/schema.prisma: datasource provider sqlite -> postgresql
+- server/prisma/migrations/migration_lock.toml: provider sqlite -> postgresql
+- server/prisma/migrations/20260323113401_init/migration.sql: PostgreSQL 호환 SQL로 변환
+- server/package.json 설명 업데이트 (PostgreSQL)
+- server/.env.example 신규 추가 (Neon/Supabase 연결 문자열 예시)
+- 목적: Render free 환경에서 Persistent Disk 없이 외부 DB 연결로 운영 가능하도록 전환

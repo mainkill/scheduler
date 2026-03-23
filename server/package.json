@@ -1,7 +1,7 @@
 {
   "name": "scheduler-server",
   "version": "1.0.0",
-  "description": "Scheduler backend API with Express + Prisma + SQLite",
+  "description": "Scheduler backend API with Express + Prisma + PostgreSQL",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
