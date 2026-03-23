@@ -196,3 +196,14 @@ A:
   2) Vercel 환경변수 REACT_APP_API_URL=<백엔드 URL> 설정
   3) 백엔드 환경변수 CLIENT_URL=https://scheduler-chi-sable.vercel.app 설정
   4) 프론트/백엔드 모두 재배포
+
+USER:
+설명한 해결 순서를 차례대로 진행할 수 있도록 도와줘.
+
+A:
+배포 순서를 쉽게 진행하도록 서버 배포 보강 작업 수행.
+- server/package.json: 배포용 스크립트 추가
+  - migrate:deploy (prisma migrate deploy)
+  - prisma:generate (prisma generate)
+- server/src/index.js: /health 점검 엔드포인트 추가
+- 다음 단계: Render 백엔드 배포 -> Vercel 환경변수 설정 -> 재배포/검증
