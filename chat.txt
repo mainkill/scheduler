@@ -207,3 +207,18 @@ A:
   - prisma:generate (prisma generate)
 - server/src/index.js: /health 점검 엔드포인트 추가
 - 다음 단계: Render 백엔드 배포 -> Vercel 환경변수 설정 -> 재배포/검증
+
+USER:
+Render 배포 중 "Creating SQLite database parent directory. Read-only file system (os error 30)" 오류가 발생했어.
+
+A:
+원인 확인 및 해결 반영.
+- 원인: Render Build 단계에서는 /var/data가 쓰기 가능하지 않음(디스크는 Runtime에 마운트)
+- 해결: 마이그레이션(prisma migrate deploy)을 Build Command에서 제거하고 Start Command에서 실행
+- 코드 반영: server/package.json에 start:render 스크립트 추가
+  - start:render = npm run migrate:deploy && node src/index.js
+- Render 설정 가이드:
+  1) Build Command: npm install && npm run prisma:generate
+  2) Start Command: npm run start:render
+  3) Persistent Disk mount path: /var/data
+  4) DATABASE_URL=file:/var/data/dev.db
